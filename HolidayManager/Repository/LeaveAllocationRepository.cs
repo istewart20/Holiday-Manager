@@ -2,6 +2,7 @@
 using HolidayManager.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace HolidayManager.Repository
 {
@@ -16,32 +17,35 @@ namespace HolidayManager.Repository
 
         public bool Create(LeaveAllocation entity)
         {
-            throw new System.NotImplementedException();
+            _dbContext.LeaveAllocations.Add(entity);
+            return Save();
         }
 
         public bool Delete(LeaveAllocation entity)
         {
-            throw new System.NotImplementedException();
+            _dbContext.LeaveAllocations.Remove(entity);
+            return Save();
         }
 
         public ICollection<LeaveAllocation> FindAll()
         {
-            throw new System.NotImplementedException();
+            return _dbContext.LeaveAllocations.ToList();
         }
 
         public LeaveAllocation FindById(int id)
         {
-            throw new System.NotImplementedException();
+            return _dbContext.LeaveAllocations.Find(id);
         }
 
         public bool Save()
         {
-            throw new System.NotImplementedException();
+            return _dbContext.SaveChanges() > 0;
         }
 
         public bool Update(LeaveAllocation entity)
         {
-            throw new System.NotImplementedException();
+            _dbContext.LeaveAllocations.Update(entity);
+            return Save();
         }
     }
 }

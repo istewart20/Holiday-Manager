@@ -2,6 +2,7 @@
 using HolidayManager.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace HolidayManager.Repository
 {
@@ -16,32 +17,35 @@ namespace HolidayManager.Repository
 
         public bool Create(LeaveHistory entity)
         {
-            throw new NotImplementedException();
+            _dbContext.LeaveHistories.Add(entity);
+            return Save();
         }
 
         public bool Delete(LeaveHistory entity)
         {
-            throw new NotImplementedException();
+            _dbContext.LeaveHistories.Remove(entity);
+            return Save();
         }
 
         public ICollection<LeaveHistory> FindAll()
         {
-            throw new NotImplementedException();
+            return _dbContext.LeaveHistories.ToList();
         }
 
         public LeaveHistory FindById(int id)
         {
-            throw new NotImplementedException();
+            return _dbContext.LeaveHistories.Find(id);
         }
 
         public bool Save()
         {
-            throw new NotImplementedException();
+            return _dbContext.SaveChanges() > 0;
         }
 
         public bool Update(LeaveHistory entity)
         {
-            throw new NotImplementedException();
+            _dbContext.LeaveHistories.Update(entity);
+            return Save();
         }
     }
 }
